@@ -1,0 +1,41 @@
+<div class="d-flex justify-content-end align-items-center">
+  <button mat-flat-button color="accent" routerLink="/articles/new">
+    <mat-icon>edit</mat-icon>
+    <span class="ml-2">Add new</span>
+  </button>
+
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <h1 class="title mat-display-2 mt-4 mb-5">Article List</h1>
+    <mat-divider></mat-divider>
+    <mat-list role="list">
+      <mat-list-item *ngFor="let article of articles">
+        <mat-divider></mat-divider>
+        <div class="d-flex justify-content-between align-items-top" style="width:100%;">
+          <div>
+            <h3 class="mt-0">{{article.title}}</h3>
+            <p mat-line class="desc my-0"><span class="key">Description:</span>{{article.shortDescription}}</p>
+            <p mat-line class="url mb-4 mt-0"><span class="key">Url:</span>{{article.url}}</p>
+            <button mat-raised-button class="mr-3" [routerLink]="['articles',article.id]">Details</button>
+            <button mat-raised-button color="primary" class="mr-3" [matMenuTriggerFor]="menu">Actions</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>Add to Session</button>
+                <button mat-menu-item>Mark as Read</button>
+            </mat-menu>
+            <!-- <button mat-raised-button color="accent">Start Reading</button> -->
+          </div>
+          <div>
+            <p mat-line class="desc my-0"><span class="key">Last read:</span>2019.09.01</p>
+            <p mat-line class="mt-2 read-count d-flex align-items-center justify-content-end"
+              style="text-align: right;">
+              <mat-icon color="accent">book</mat-icon> 0
+            </p>
+          </div>
+        </div>
+
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>

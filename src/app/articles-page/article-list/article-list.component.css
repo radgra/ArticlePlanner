@@ -1,0 +1,24 @@
+.desc, .url {
+    font-size: 13px !important;
+}
+h3 {
+    margin-bottom: 8px;
+}
+
+.key {
+    color: #a0a0a0;
+    font-weight: bold;
+    margin-right:4px;
+}
+
+.read-count {
+    font-size: 20px !important; 
+}
+
+.title {
+    text-align: center;
+}
+
+button {
+    line-height: 26px;
+}
