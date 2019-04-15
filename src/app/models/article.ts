@@ -5,8 +5,9 @@ export interface Article {
     title:string,
     shortDescription?:string;
     icon?:string;
-    readingsCount:number;
+    readingsCount?:number;
     url:string;
     conclusions?:string;
-    readings?:Reading[]
+    readings?:Reading[];
+    added?:Date
 }

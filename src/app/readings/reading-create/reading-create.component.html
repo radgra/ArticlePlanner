@@ -1,0 +1,18 @@
+<h2>New Reading</h2>
+<form [formGroup]="readingForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <textarea matInput formControlName="notes" rows="3" placeholder="Notes"></textarea>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="time" placeholder="Time needed" type="time" step="2">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="article" placeholder="Article"
+    [matAutocomplete]="auto"
+    >
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let article of articles | async" [value]="article">{{article.title}}</mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <button mat-raised-button class="mt-3" color="primary">Submit</button>
+</form>

@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-12 px-4" [ngSwitch]="data.type">
+    <ng-container *ngSwitchCase="'addReading'">
+      <app-reading-create [applyArticle]="data.article"></app-reading-create>
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+      somwthing went wrong
+    </ng-container>
+  </div>
+</div>

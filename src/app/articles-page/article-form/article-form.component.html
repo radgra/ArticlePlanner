@@ -1,11 +1,18 @@
-<form [formGroup]="articleForm" >
-  <mat-form-field>
+<form [formGroup]="articleForm" #f="ngForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="mb-2">
     <input matInput placeholder="Title" formControlName="title">
+    <mat-error *ngIf="articleForm.get('title').hasError('required')">
+      Title is <strong>required</strong>
+    </mat-error>
   </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Short Description" formControlName="shortDescription">
+  <mat-form-field class="mb-2">
+    <textarea matInput rows="3" formControlName="shortDescription" placeholder="Short Description"></textarea>
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field class="mb-2">
     <input matInput placeholder="Url" formControlName="url">
+    <mat-error *ngIf="articleForm.get('url').hasError('required')">
+      Url is <strong>required</strong>
+    </mat-error>
   </mat-form-field>
+  <button mat-raised-button color="primary" class="mt-3" [disabled]="!articleForm.valid">Submit</button>
 </form>

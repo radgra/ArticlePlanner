@@ -1,3 +1,18 @@
 mat-card-title {
     font-size:35px;
 }
+
+.url-link {
+    color:#69f0ae;
+    font-size: 10px;
+}
+
+mat-list-item, mat-nav-list a {
+    justify-content: center !important;
+    display:flex !important;
+}
+
+
+mat-form-field {
+    width:100%;
+}

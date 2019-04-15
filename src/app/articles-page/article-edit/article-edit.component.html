@@ -1,3 +1,19 @@
-<p>
-  article-edit works!
-</p>
+<div class="row">
+    <div class="col-12">
+      <button mat-icon-button routerLink="/">
+        <mat-icon color="accent">arrow_back</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-center">
+        <mat-card class="p-5">
+          <mat-card-title class="px-5">Edit Article</mat-card-title>
+          <mat-card-content class="px-5">
+            <app-article-form [articleForm]="articleForm" (formSubmitted)="onSubmit($event)" #f></app-article-form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
