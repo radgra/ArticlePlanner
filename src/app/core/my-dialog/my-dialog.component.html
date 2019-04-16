@@ -3,6 +3,9 @@
     <ng-container *ngSwitchCase="'addReading'">
       <app-reading-create [applyArticle]="data.article"></app-reading-create>
     </ng-container>
+    <ng-container *ngSwitchCase="'deleteArticle'">
+      <app-delete-modal (confirm)="handleArticleDelete($event)"></app-delete-modal>
+    </ng-container>
     <ng-container *ngSwitchDefault>
       somwthing went wrong
     </ng-container>

@@ -40,8 +40,19 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   handleDelete() {
-    this.articleService.deleteArticle(this.article.id)
-    this.router.navigate(['/'])
+    const dialogRef = this.dialog.open(MyDialogComponent,{
+      data:{
+        type:'deleteArticle'
+      } as MyDialogData
+    })
+
+    dialogRef.afterClosed().subscribe((data:any) => {
+      if(data === true) {
+        this.articleService.deleteArticle(this.article.id)
+        this.router.navigate(['/'])
+      }
+    })
+
   }
 
   startTimer() {

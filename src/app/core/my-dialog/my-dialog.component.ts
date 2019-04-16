@@ -19,8 +19,7 @@ export class MyDialogComponent implements OnInit {
   ngOnInit() {
   }
 
-  // onNoClick(): void {
-  //   this.dialogRef.close();
-  // }
-
+  handleArticleDelete(confirm:boolean) {
+    this.dialogRef.close(confirm)
+  }
 }

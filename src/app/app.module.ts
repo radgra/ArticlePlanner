@@ -20,6 +20,7 @@ import { ArticleFormBaseComponent } from './articles-page/article-form/article-f
 import { MyDialogComponent } from './core/my-dialog/my-dialog.component';
 import { ReadingCreateComponent } from './readings/reading-create/reading-create.component';
 import { ApplyArticleDirective } from './readings/directives/apply-article.directive';
+import { DeleteModalComponent } from './articles-page/article-detail/delete-modal/delete-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { ApplyArticleDirective } from './readings/directives/apply-article.direc
     ArticleFormBaseComponent,
     MyDialogComponent,
     ReadingCreateComponent,
-    ApplyArticleDirective
+    ApplyArticleDirective,
+    DeleteModalComponent
   ],
   imports: [
     BrowserModule,

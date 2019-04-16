@@ -13,3 +13,19 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
+
+.invisible{
+    display: block;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+}
+
+.custom-label {
+    color:rgba(255,255,255,.5);
+    font-size: 12px;
+}
+
+mat-slider {
+    width:100%;
+}

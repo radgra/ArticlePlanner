@@ -5,4 +5,5 @@ export interface Reading {
     time?:number;
     articleId:string;
     completed:boolean;
+    comprehension?:number;
 }
