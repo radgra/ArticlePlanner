@@ -6,3 +6,14 @@
         Reading Scheduler
     </a>
 </mat-toolbar>
+<mat-toolbar color="accent" *ngIf="timerState !== TimerState.inactive" class="">
+    <span>
+        Reading Article "{{currentArticle?.title}}"
+    </span>
+    <span class="">
+        
+    </span>
+    <div class="d-flex ml-3">
+        Time: {{timer.hours}} : {{timer.minutes}} : {{timer.seconds}}
+    </div>
+</mat-toolbar>

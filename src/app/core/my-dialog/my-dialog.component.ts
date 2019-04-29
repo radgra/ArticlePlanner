@@ -22,4 +22,8 @@ export class MyDialogComponent implements OnInit {
   handleArticleDelete(confirm:boolean) {
     this.dialogRef.close(confirm)
   }
+
+  handleCreateArticle(confirm:boolean) {
+    this.dialogRef.close(confirm)
+  }
 }

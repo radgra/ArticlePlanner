@@ -1,9 +1,9 @@
 export interface Reading {
     id?:string;
     date?:Date;
-    notes:string;
+    notes?:string;
     time?:number;
     articleId:string;
-    completed:boolean;
+    completed?:boolean;
     comprehension?:number;
 }

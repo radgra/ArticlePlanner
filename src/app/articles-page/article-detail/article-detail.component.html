@@ -33,8 +33,13 @@
             </div>
           </ng-template>
         </div>
-        <button mat-raised-button class="mt-3" color="primary" (click)="startTimer()">Clock It !</button>
-        <button mat-raised-button class="mt-3" color="primary" (click)="pauseTimer()">Pause It !</button>
+        <button mat-raised-button class="mt-3" color="primary" (click)="startTimer()" *ngIf="timerState === TimerState.inactive ">Clock It !</button>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="mt-2">
+      <mat-card-title>Readings</mat-card-title>
+      <mat-card-content>
+        <app-readings-article-table [articleId]="article.id"></app-readings-article-table>
       </mat-card-content>
     </mat-card>
   </div>
@@ -72,15 +77,16 @@
 
       </mat-card-content>
     </mat-card>
-    <mat-card class="mt-2">
+    <mat-card class="mt-2" *ngIf="timerState !== TimerState.inactive">
       <mat-card-content>
-        <h1 class="pl-3">Timer:</h1>
+        <h1 class="pl-3">Timer: <span class="ml-2">{{timer.hours}} : {{timer.minutes}} : {{timer.seconds}}</span></h1>
         <div class="px-3 d-flex justify-content-between">
-          <button mat-raised-button color="primary">Pause</button>
-          <button mat-raised-button color="warn">Abort</button>
+          <button mat-raised-button color="primary" (click)="pauseTimer()" *ngIf="timerState === TimerState.running">Pause</button>
+          <button mat-raised-button color="primary" (click)="startTimer()" *ngIf="timerState === TimerState.paused">Resume</button>
+          <button mat-raised-button color="warn" (click)="timerAbort()">Abort</button>
           <button mat-raised-button color="accent">Complete</button>
         </div>
       </mat-card-content>
     </mat-card>
   </div>
-</div>
+</div> 

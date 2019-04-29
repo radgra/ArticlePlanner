@@ -7,13 +7,13 @@
     <mat-label>Time needed</mat-label>
     <div class="d-flex">
       <mat-form-field class="mr-4">
-        <input matInput formControlName="hours" placeholder="Hours">
+        <input matInput formControlName="hours" placeholder="Hours" type="number">
       </mat-form-field>
       <mat-form-field class="mr-4">
-        <input matInput formControlName="minutes" placeholder="Minutes">
+        <input matInput formControlName="minutes" placeholder="Minutes" type="number">
       </mat-form-field>
       <mat-form-field class="mr-4">
-        <input matInput formControlName="seconds" placeholder="Seconds">
+        <input matInput formControlName="seconds" placeholder="Seconds" type="number">
       </mat-form-field>
     </div>
   </div>
@@ -31,7 +31,7 @@
     <div class="d-flex justify-content-between align-items-center">
       <span class="d-flex align-items-center mt-2">
         <mat-icon class="mr-1" matTooltip="Unset" (click)="handleSliderChange({value:null})"
-          *ngIf="readingForm.get('comprehension').value">cancel</mat-icon>
+          *ngIf="readingForm.get('comprehension').value" style="cursor:pointer;">cancel</mat-icon>
         <mat-label>
           Comprehension
         </mat-label>

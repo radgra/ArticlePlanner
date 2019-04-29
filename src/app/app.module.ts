@@ -21,6 +21,7 @@ import { MyDialogComponent } from './core/my-dialog/my-dialog.component';
 import { ReadingCreateComponent } from './readings/reading-create/reading-create.component';
 import { ApplyArticleDirective } from './readings/directives/apply-article.directive';
 import { DeleteModalComponent } from './articles-page/article-detail/delete-modal/delete-modal.component';
+import { ReadingsArticleTableComponent } from './articles-page/article-detail/readings-article-table/readings-article-table.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import { DeleteModalComponent } from './articles-page/article-detail/delete-moda
     MyDialogComponent,
     ReadingCreateComponent,
     ApplyArticleDirective,
-    DeleteModalComponent
+    DeleteModalComponent,
+    ReadingsArticleTableComponent
   ],
   imports: [
     BrowserModule,

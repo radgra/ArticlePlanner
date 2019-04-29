@@ -1,28 +1,32 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, interval, Subject, Observable, empty } from 'rxjs';
-import { map, switchMap, mapTo, skipWhile, takeWhile, concatMap, filter, takeUntil, skipUntil, share } from 'rxjs/operators';
+import { map, switchMap, mapTo, skipWhile, takeWhile, concatMap, filter, takeUntil, skipUntil, share, tap, shareReplay } from 'rxjs/operators';
 import { Timer } from '../models/timer';
+import { Article } from '../models/article';
+
+export enum TimerState {
+  running,
+  paused,
+  inactive
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimerService {
   private elapsedTime: number = 0
-  private _timer$: BehaviorSubject<any> = new BehaviorSubject(false)
-  timer$ = this._timer$.asObservable()
-  private pauseTimer$: Subject<any> = new Subject()
-  private startTimer$:Subject<any> = new Subject()
-  starter$: Observable<any>
+  private timerControllerSubject: BehaviorSubject<boolean> = new BehaviorSubject(false)
+  private currentArticleSubject:BehaviorSubject<Article> = new BehaviorSubject(null)
+  private timerStateSubject:BehaviorSubject<TimerState> = new BehaviorSubject(TimerState.inactive)
+  private timerValuesSubject:BehaviorSubject<Timer> = new BehaviorSubject({hours:0,minutes:0,seconds:0})
+  timer$:Observable<Timer> = this.timerValuesSubject.asObservable()
+  timerState$:Observable<TimerState> = this.timerStateSubject.asObservable()
+  currentArticle$:Observable<Article> = this.currentArticleSubject.asObservable()
 
 
   constructor() {
-    this.starter$ = this.startTimer$.pipe(
-      switchMap(val => val === true ? this.timer$ : empty()),
-      share()
-    )
-
-    this.timer$ = this.timer$.pipe(
-      switchMap(data => interval(1000)),
+    
+    const stream$ = interval(1000).pipe(
       map(interval => {
         this.elapsedTime = this.elapsedTime + 1;
         return this.elapsedTime
@@ -39,25 +43,47 @@ export class TimerService {
           rawTime
         } as Timer
       }),
-      // share()
-    )
-  }
+      )
+      
+      this.timerControllerSubject.pipe(
+        tap(console.log),
+        switchMap(val => val === true ? stream$ : empty()),
+        ).subscribe((timer:Timer) => {
+          console.log('timer',timer)
+          this.timerValuesSubject.next(timer)
+        })
+        
+      this.timerState$.pipe(
+        filter((state:TimerState) => state === TimerState.inactive)
+        ).subscribe(data => {
+          this.elapsedTime = 0       
+          this.currentArticleSubject.next(null)
+          this.timerValuesSubject.next({hours:0,minutes:0,seconds:0})
+        })
+      }
 
-  startTimer() {
-    this._timer$.next(true)
-    this.startTimer$.next(true)
+  startTimer(article:Article) {
+    this.timerStateSubject.next(TimerState.running)
+    this.currentArticleSubject.next(article)
+    this.timerControllerSubject.next(true)
   }
   
   resetTimer() {
-    
+    this.timerStateSubject.next(TimerState.inactive)
+    this.timerControllerSubject.next(false)
   }
   
   pauseTimer() {
-    this.pauseTimer$.next(true)
-    this.startTimer$.next(false)
+    this.timerStateSubject.next(TimerState.paused)
+    this.timerControllerSubject.next(false)
+  }
+  
+  resumeTimer() {
+    this.timerStateSubject.next(TimerState.running)
+    this.timerControllerSubject.next(true)
   }
 
   getTimer() {
-
+    return this.timer$
   }
 }
