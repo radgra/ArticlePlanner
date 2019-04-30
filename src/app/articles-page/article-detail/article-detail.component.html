@@ -79,7 +79,7 @@
     </mat-card>
     <mat-card class="mt-2" *ngIf="timerState !== TimerState.inactive">
       <mat-card-content>
-        <h1 class="pl-3">Timer: <span class="ml-2">{{timer.hours}} : {{timer.minutes}} : {{timer.seconds}}</span></h1>
+        <h1 class="pl-3">Timer: <span class="ml-2">{{timer | timeInterval }}</span></h1>
         <div class="px-3 d-flex justify-content-between">
           <button mat-raised-button color="primary" (click)="pauseTimer()" *ngIf="timerState === TimerState.running">Pause</button>
           <button mat-raised-button color="primary" (click)="startTimer()" *ngIf="timerState === TimerState.paused">Resume</button>

@@ -18,8 +18,8 @@ export class TimerService {
   private timerControllerSubject: BehaviorSubject<boolean> = new BehaviorSubject(false)
   private currentArticleSubject:BehaviorSubject<Article> = new BehaviorSubject(null)
   private timerStateSubject:BehaviorSubject<TimerState> = new BehaviorSubject(TimerState.inactive)
-  private timerValuesSubject:BehaviorSubject<Timer> = new BehaviorSubject({hours:0,minutes:0,seconds:0})
-  timer$:Observable<Timer> = this.timerValuesSubject.asObservable()
+  private timerValuesSubject:BehaviorSubject<Number> = new BehaviorSubject(0)
+  timer$:Observable<Number> = this.timerValuesSubject.asObservable()
   timerState$:Observable<TimerState> = this.timerStateSubject.asObservable()
   currentArticle$:Observable<Article> = this.currentArticleSubject.asObservable()
 
@@ -31,24 +31,24 @@ export class TimerService {
         this.elapsedTime = this.elapsedTime + 1;
         return this.elapsedTime
       }),
-      map(rawTime => {
-        const hours = Math.floor(rawTime / 3600)
-        let restSecs = rawTime - (hours * 3600)
-        const minutes = Math.floor(restSecs / 60)
-        const seconds = restSecs - (minutes * 60)
-        return {
-          hours,
-          minutes,
-          seconds,
-          rawTime
-        } as Timer
-      }),
+      // map(rawTime => {
+      //   const hours = Math.floor(rawTime / 3600)
+      //   let restSecs = rawTime - (hours * 3600)
+      //   const minutes = Math.floor(restSecs / 60)
+      //   const seconds = restSecs - (minutes * 60)
+      //   return {
+      //     hours,
+      //     minutes,
+      //     seconds,
+      //     rawTime
+      //   } as Timer
+      // }),
       )
       
       this.timerControllerSubject.pipe(
         tap(console.log),
         switchMap(val => val === true ? stream$ : empty()),
-        ).subscribe((timer:Timer) => {
+        ).subscribe((timer:Number) => {
           console.log('timer',timer)
           this.timerValuesSubject.next(timer)
         })
@@ -58,7 +58,7 @@ export class TimerService {
         ).subscribe(data => {
           this.elapsedTime = 0       
           this.currentArticleSubject.next(null)
-          this.timerValuesSubject.next({hours:0,minutes:0,seconds:0})
+          this.timerValuesSubject.next(0)
         })
       }
 

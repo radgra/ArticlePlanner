@@ -21,7 +21,7 @@ export class ArticleDetailComponent implements OnInit {
   article: Article
   timerState:TimerState = TimerState.inactive
   conclusions: string = ''
-  timer: Timer
+  timer: Number
   editConclusions: boolean = false
   // @ViewChild('conInput',{read:ElementRef}) conInput:ElementRef
   constructor(private route: ActivatedRoute, private router: Router,
@@ -119,10 +119,6 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   zeroTimer() {
-    this.timer = {
-      hours: 0,
-      minutes: 0,
-      seconds: 0
-    }
+    this.timer = 0
   }
 }

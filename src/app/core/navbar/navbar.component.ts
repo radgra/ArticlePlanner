@@ -12,7 +12,7 @@ import { Article } from 'src/app/models/article';
 })
 export class NavbarComponent implements OnInit {
   TimerState = TimerState
-  timer: Timer
+  timer: Number
   currentArticle: Article
   timerState: TimerState = TimerState.inactive
   constructor(private timerService: TimerService) { }

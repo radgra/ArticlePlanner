@@ -22,6 +22,7 @@ import { ReadingCreateComponent } from './readings/reading-create/reading-create
 import { ApplyArticleDirective } from './readings/directives/apply-article.directive';
 import { DeleteModalComponent } from './articles-page/article-detail/delete-modal/delete-modal.component';
 import { ReadingsArticleTableComponent } from './articles-page/article-detail/readings-article-table/readings-article-table.component';
+import { TimePipe } from './pipes/time.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { ReadingsArticleTableComponent } from './articles-page/article-detail/re
     ReadingCreateComponent,
     ApplyArticleDirective,
     DeleteModalComponent,
-    ReadingsArticleTableComponent
+    ReadingsArticleTableComponent,
+    TimePipe
   ],
   imports: [
     BrowserModule,
