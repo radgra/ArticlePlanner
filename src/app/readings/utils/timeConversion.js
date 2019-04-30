@@ -4,7 +4,7 @@ export function timeObjectToNumber(time) {
         number += time.hours * 3600
     }
     if(time.minutes){
-        number += time.hours * 60
+        number += time.minutes * 60
     }
     if(time.seconds){
         number += time.seconds

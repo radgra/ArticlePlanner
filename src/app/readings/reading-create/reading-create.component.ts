@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Article } from 'src/app/models/article';
 import { ArticleService } from 'src/app/services/article.service';
@@ -24,9 +24,9 @@ export class ReadingCreateComponent implements OnInit {
     this.readingForm = new FormGroup({
       notes:new FormControl(),
       time:new FormGroup({
-        hours:new FormControl(),
-        minutes:new FormControl(),
-        seconds:new FormControl()
+        hours:new FormControl(null, [Validators.min(0),Validators.max(160)]),
+        minutes:new FormControl(null,[Validators.min(0),Validators.max(59)]),
+        seconds:new FormControl(null, [Validators.min(0),Validators.max(59)])
       }),
       article:new FormControl(),
       comprehension:new FormControl()
